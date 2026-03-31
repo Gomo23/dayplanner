@@ -1,0 +1,67 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  background: #faf7f4;
+  color: #1a1108;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+input, select, textarea {
+  font-family: inherit;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #faf7f4;
+}
+::-webkit-scrollbar-thumb {
+  background: #e0d4c6;
+  border-radius: 4px;
+}
+
+select option {
+  background: #ffffff;
+  color: #1a1108;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes floatA {
+  0%,100% { transform: translateY(0) rotate(-1deg); }
+  50%      { transform: translateY(-16px) rotate(1deg); }
+}
+@keyframes floatB {
+  0%,100% { transform: translateY(0) rotate(1deg); }
+  50%      { transform: translateY(-12px) rotate(-0.5deg); }
+}
+@keyframes pulse {
+  0%,100% { opacity: 0.5; }
+  50%      { opacity: 1; }
+}
+@keyframes toastIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
