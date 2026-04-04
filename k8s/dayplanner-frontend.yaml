@@ -1,4 +1,4 @@
-apiVersion: apps/v1
+kapiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend
@@ -13,6 +13,8 @@ spec:
       labels:
         app: frontend
     spec:
+      imagePullSecrets:
+        - name: ecr-secret
       containers:
         - name: frontend
           image: 334894867020.dkr.ecr.us-east-2.amazonaws.com/dayplanner-frontend:IMAGE_TAG
