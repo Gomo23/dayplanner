@@ -22,11 +22,3 @@ resource "helm_release" "nginx_ingress" {
   timeout          = 300
   depends_on       = [aws_eks_node_group.main]
 }
-# Create dayplanner namespace for ArgoCD to deploy into
-resource "kubernetes_namespace" "dayplanner" {
-  metadata {
-    name = "dayplanner"
-  }
-
-  depends_on = [aws_eks_node_group.main]
-}
