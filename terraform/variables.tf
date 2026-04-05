@@ -32,8 +32,12 @@ variable "jenkins_url" {
   description = "Jenkins server URL"
   default     = "http://16.59.94.213:8080"
 }
-
 variable "jenkins_job" {
   description = "Jenkins job name"
   default     = "day"
+}
+
+variable "image_tag" {
+  description = "Docker image build number"
+  type        = string
 }
