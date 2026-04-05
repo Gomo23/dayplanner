@@ -8,7 +8,7 @@ backend:
     repository: "334894867020.dkr.ecr.us-east-2.amazonaws.com/dayplanner-backend"
     tag: "latest"
   replicas: 1
-  port: 8080
+  port: 4000
   env:
     dbUrl: "jdbc:postgresql://localhost:5432/dayplanner"
     dbUser: "dayplanner"
