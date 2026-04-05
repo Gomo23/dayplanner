@@ -22,7 +22,7 @@ spec:
             - containerPort: 4000
           env:
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:postgresql://postgres:5432/dayplanner
+              value: jdbc:postgresql://dayplanner-postgres.ctsowgw8yfj6.us-east-2.rds.amazonaws.com:5432/dayplanner
             - name: SPRING_DATASOURCE_USERNAME
               value: dayplanner
             - name: SPRING_DATASOURCE_PASSWORD
