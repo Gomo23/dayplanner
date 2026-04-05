@@ -12,8 +12,6 @@ provider "helm" {
   }
 }
 
-# Helm only installs Nginx Ingress — NOT the app
-# App is deployed by ArgoCD watching GitHub
 resource "helm_release" "nginx_ingress" {
   name             = "nginx-ingress"
   repository       = "https://kubernetes.github.io/ingress-nginx"
@@ -22,10 +20,8 @@ resource "helm_release" "nginx_ingress" {
   create_namespace = true
   wait             = true
   timeout          = 300
-
-  depends_on = [aws_eks_node_group.main]
+  depends_on       = [aws_eks_node_group.main]
 }
-
 # Create dayplanner namespace for ArgoCD to deploy into
 resource "kubernetes_namespace" "dayplanner" {
   metadata {
