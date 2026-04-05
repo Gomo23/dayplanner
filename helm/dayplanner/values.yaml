@@ -1,0 +1,25 @@
+aws:
+  region: us-east-2
+  accountId: "334894867020"
+  ecrUrl: "334894867020.dkr.ecr.us-east-2.amazonaws.com"
+
+backend:
+  image:
+    repository: "334894867020.dkr.ecr.us-east-2.amazonaws.com/dayplanner-backend"
+    tag: "latest"
+  replicas: 1
+  port: 8080
+  env:
+    dbUrl: "jdbc:postgresql://localhost:5432/dayplanner"
+    dbUser: "dayplanner"
+    dbPassword: "dayplanner123"
+
+frontend:
+  image:
+    repository: "334894867020.dkr.ecr.us-east-2.amazonaws.com/dayplanner-frontend"
+    tag: "latest"
+  replicas: 1
+  port: 80
+
+ingress:
+  host: "dayplanner.example.com"

@@ -1,0 +1,6 @@
+apiVersion: v2
+name: dayplanner
+description: DayPlanner full stack app
+type: application
+version: 1.0.0
+appVersion: "1.0.0"

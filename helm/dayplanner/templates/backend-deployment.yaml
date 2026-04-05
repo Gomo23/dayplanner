@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  namespace: dayplanner
+spec:
+  replicas: {{ .Values.backend.replicas }}
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          image: "{{ .Values.backend.image.repository }}:{{ .Values.backend.image.tag }}"
+          ports:
+            - containerPort: {{ .Values.backend.port }}
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: {{ .Values.backend.env.dbUrl }}
+            - name: SPRING_DATASOURCE_USERNAME
+              value: {{ .Values.backend.env.dbUser }}
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: {{ .Values.backend.env.dbPassword }}

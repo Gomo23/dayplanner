@@ -1,12 +1,21 @@
+# Terraform
+terraform/.terraform/
+terraform/terraform.tfstate
+terraform/terraform.tfstate.backup
+terraform/terraform.tfvars
+terraform/.terraform.lock.hcl
+
 # Node
-node_modules/
-npm-debug.log*
-yarn-error.log*
+frontend/node_modules/
+frontend/build/
 
-# Build outputs
-dist/
-build/
+# Maven
+backend/target/
 
-# Caches
-.cache/
+# Secrets
+*.pem
+*.key
 .env
+
+# OS
+.DS_Store
