@@ -15,3 +15,13 @@ terraform {
 provider "aws" {
   region = var.aws_region
 }
+
+data "aws_ecr_image" "backend_latest" {
+  repository_name = "dayplanner-backend"
+  most_recent     = true
+}
+
+data "aws_ecr_image" "frontend_latest" {
+  repository_name = "dayplanner-frontend"
+  most_recent     = true
+}
