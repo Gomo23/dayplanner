@@ -42,7 +42,7 @@ resource "helm_release" "dayplanner" {
 
 set {
   name  = "backend.image.tag"
-  value = var.image_tag
+  value = data.aws_ecr_image.backend_latest.image_tags[0]
 }
 
 set {
@@ -52,8 +52,7 @@ set {
 
 set {
   name  = "frontend.image.tag"
-  value = var.image_tag
-}
+value = data.aws_ecr_image.frontend_latest.image_tags[0]}
 
   depends_on = [
     helm_release.nginx_ingress,
