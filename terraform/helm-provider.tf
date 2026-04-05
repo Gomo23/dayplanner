@@ -37,12 +37,12 @@ resource "helm_release" "dayplanner" {
 
   set {
     name  = "backend.image.tag"
-    value = "latest"
+    value = var.image_tag
   }
 
   set {
     name  = "frontend.image.tag"
-    value = "latest"
+    value =var.image_tag
   }
 
   depends_on = [
