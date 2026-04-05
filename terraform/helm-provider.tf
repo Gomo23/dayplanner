@@ -36,14 +36,24 @@ resource "helm_release" "dayplanner" {
   }
 
   set {
-    name  = "backend.image.tag"
-    value = var.image_tag
-  }
+  name  = "backend.image.repository"
+  value = "334894867020.dkr.ecr.us-east-2.amazonaws.com/dayplanner-backend"
+}
 
-  set {
-    name  = "frontend.image.tag"
-    value =var.image_tag
-  }
+set {
+  name  = "backend.image.tag"
+  value = var.image_tag
+}
+
+set {
+  name  = "frontend.image.repository"
+  value = "334894867020.dkr.ecr.us-east-2.amazonaws.com/dayplanner-frontend"
+}
+
+set {
+  name  = "frontend.image.tag"
+  value = var.image_tag
+}
 
   depends_on = [
     helm_release.nginx_ingress,
