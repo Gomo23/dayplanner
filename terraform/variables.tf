@@ -37,7 +37,4 @@ variable "jenkins_job" {
   default     = "day"
 }
 
-variable "image_tag" {
-  description = "Docker image build number"
-  type        = string
-}
+
