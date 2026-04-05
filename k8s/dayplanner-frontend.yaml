@@ -17,7 +17,7 @@ spec:
         - name: ecr-secret
       containers:
         - name: frontend
-          image: 334894867020.dkr.ecr.us-east-2.amazonaws.com/dayplanner-frontend:IMAGE_TAG
+          image: 334894867020.dkr.ecr.us-east-2.amazonaws.com/dayplanner-frontend:19
           ports:
             - containerPort: 80
 ---
