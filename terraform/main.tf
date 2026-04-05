@@ -4,24 +4,30 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 5.0"
     }
-
     helm = {
       source  = "hashicorp/helm"
       version = "~> 2.0"
     }
+    kubernetes = {
+      source  = "hashicorp/kubernetes"
+      version = "~> 2.0"
+    }
   }
+  required_version = ">= 1.0"
 }
 
 provider "aws" {
   region = var.aws_region
 }
 
-data "aws_ecr_image" "backend_latest" {
-  repository_name = "dayplanner-backend"
-  most_recent     = true
-}
-
-data "aws_ecr_image" "frontend_latest" {
-  repository_name = "dayplanner-frontend"
-  most_recent     = true
+provider "kubernetes" {
+  host                   = aws_eks_cluster.main.endpoint
+  cluster_ca_certificate = base64decode(
+    aws_eks_cluster.main.certificate_authority[0].data
+  )
+  exec {
+    api_version = "client.authentication.k8s.io/v1beta1"
+    args        = ["eks", "get-token", "--cluster-name", var.cluster_name]
+    command     = "aws"
+  }
 }
