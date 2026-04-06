@@ -23,4 +23,4 @@ frontend:
 
 ingress:
   host: "dayplanner.example.com"
-   enabled: true
+  enabled: true    # ← same indent level as host, no extra space

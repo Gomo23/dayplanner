@@ -3,14 +3,15 @@ kind: Application
 metadata:
   name: dayplanner
   namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
     repoURL: https://github.com/Gomo23/dayplanner.git
     targetRevision: main
-    path: k8s
+    path: helm/dayplanner        # ← change from k8s to this
+    helm:
+      valueFiles:
+        - values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: dayplanner
