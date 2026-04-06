@@ -37,4 +37,7 @@ variable "jenkins_job" {
   default     = "day"
 }
 
-
+variable "github_token" {
+  description = "GitHub Personal Access Token"
+  sensitive   = true
+}
