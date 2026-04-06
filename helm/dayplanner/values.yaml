@@ -10,7 +10,7 @@ backend:
   replicas: 1
   port: 4000
   env:
-    dbUrl: "jdbc:postgresql://localhost:5432/dayplanner"
+    dbUrl: "jdbc:postgresql://dayplanner-postgres.ctsowgw8yfj6.us-east-2.rds.amazonaws.com:5432/dayplanner"
     dbUser: "dayplanner"
     dbPassword: "dayplanner123"
 
