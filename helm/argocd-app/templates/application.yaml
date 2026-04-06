@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/Gomo23/dayplanner.git
     targetRevision: main
-    path: k8s
+    path: helm/dayplanner
   destination:
     server: https://kubernetes.default.svc
     namespace: dayplanner
