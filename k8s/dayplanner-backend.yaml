@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: 334894867020.dkr.ecr.us-east-2.amazonaws.com/dayplanner-backend:latest
+          image: 334894867020.dkr.ecr.us-east-2.amazonaws.com/dayplanner-backend:23
           ports:
             - containerPort: 4000
           env:
