@@ -12,7 +12,6 @@ provider "helm" {
   }
 }
 
-# 1. Nginx Ingress Controller
 resource "helm_release" "nginx_ingress" {
   name             = "nginx-ingress"
   repository       = "https://kubernetes.github.io/ingress-nginx"
@@ -24,7 +23,6 @@ resource "helm_release" "nginx_ingress" {
   depends_on       = [aws_eks_node_group.main]
 }
 
-# 2. ArgoCD
 resource "helm_release" "argocd" {
   name             = "argocd"
   repository       = "https://argoproj.github.io/argo-helm"
@@ -42,12 +40,33 @@ resource "helm_release" "argocd" {
   depends_on = [aws_eks_node_group.main]
 }
 
-# 3. ArgoCD Application — connects GitHub to EKS automatically
+# GitHub credentials secret for ArgoCD — automatic, no manual CLI needed
+resource "kubernetes_secret" "argocd_github" {
+  metadata {
+    name      = "github-creds"
+    namespace = "argocd"
+    labels = {
+      "argocd.argoproj.io/secret-type" = "repository"
+    }
+  }
+
+  data = {
+    type     = "git"
+    url      = "https://github.com/Gomo23/dayplanner.git"
+    username = "Gomo23"
+    password = local.github_token    # ← reads from Secrets Manager
+  }
+
+  depends_on = [helm_release.argocd]
+}
+
 resource "helm_release" "argocd_app" {
   name      = "dayplanner-app"
   chart     = "${path.module}/../helm/argocd-app"
   namespace = "argocd"
   wait      = false
-
-  depends_on = [helm_release.argocd]
+  depends_on = [
+    helm_release.argocd,
+    kubernetes_secret.argocd_github
+  ]
 }
