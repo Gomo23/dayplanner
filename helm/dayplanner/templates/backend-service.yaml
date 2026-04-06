@@ -3,9 +3,12 @@ kind: Service
 metadata:
   name: backend
   namespace: dayplanner
+  labels:
+    app: backend
 spec:
   selector:
     app: backend
   ports:
-    - port: {{ .Values.backend.port }}
-      targetPort: {{ .Values.backend.port }}
+    - name: http
+      port: 4000
+      targetPort: 4000
