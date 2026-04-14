@@ -1,0 +1,5 @@
+terraform +aws issue 
+ 
+ 
+“While working on deploying an application using EKS through Terraform, I faced an issue where the EKS cluster and node group creation was failing. After investigating, I found that the IAM role attached to the instance running Terraform did not have sufficient permissions for EKS cluster and node group operations.
+I identified the missing IAM permissions such as EKS full access and node group permissions. I updated the IAM role by attaching the required policies. After fixing the IAM permissions, I reran Terraform, and the EKS cluster and node groups were created successfully. This helped ensure smooth and automated EKS provisioning.”
