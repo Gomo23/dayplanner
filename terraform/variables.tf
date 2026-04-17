@@ -32,6 +32,7 @@ variable "jenkins_url" {
   description = "Jenkins server URL"
   default     = "http://16.59.94.213:8080"
 }
+
 variable "jenkins_job" {
   description = "Jenkins job name"
   default     = "day"
@@ -39,5 +40,16 @@ variable "jenkins_job" {
 
 variable "github_token" {
   description = "GitHub Personal Access Token"
+  sensitive   = true
+}
+
+# --- Add these two ---
+variable "jenkins_user" {
+  description = "Jenkins username"
+  default     = "admin"  # change if your username differs
+}
+
+variable "jenkins_api_token" {
+  description = "Jenkins API token (from Jenkins user profile, not your password)"
   sensitive   = true
 }
