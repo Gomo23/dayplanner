@@ -70,3 +70,18 @@ resource "helm_release" "argocd_app" {
     kubernetes_secret.argocd_github
   ]
 }
+# Wait for ArgoCD to fully sync before Jenkins triggers
+resource "null_resource" "wait_for_argocd" {
+  depends_on = [helm_release.argocd_app]
+
+  provisioner "local-exec" {
+    command = <<-EOT
+      echo "Waiting for ArgoCD to sync..."
+      sleep 60
+      aws eks update-kubeconfig --region ${var.aws_region} --name ${var.cluster_name}
+      kubectl wait --for=condition=available deployment/argocd-server -n argocd --timeout=300s
+      echo "ArgoCD ready"
+    EOT
+    interpreter = ["/bin/bash", "-c"]
+  }
+}
