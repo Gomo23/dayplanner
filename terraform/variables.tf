@@ -1,55 +1,33 @@
+k# DELETE these two variables — no longer needed
+# variable "jenkins_api_token" { ... }
+# variable "github_token" { ... }
+
+# Keep only non-sensitive ones
 variable "aws_region" {
   description = "aws region"
   default     = "us-east-2"
 }
-
 variable "az_1" {
-  description = "availability zone 1"
-  default     = "us-east-2a"
+  default = "us-east-2a"
 }
-
 variable "az_2" {
-  description = "availability zone 2"
-  default     = "us-east-2b"
+  default = "us-east-2b"
 }
-
 variable "cluster_name" {
-  description = "EKS cluster name"
-  default     = "dayplanner-eks"
+  default = "dayplanner-eks"
 }
-
 variable "vpc_name" {
-  description = "vpc name"
-  default     = "dayplanner-vpc"
+  default = "dayplanner-vpc"
 }
-
 variable "eks_version" {
-  description = "eks version"
-  default     = "1.31"
+  default = "1.31"
 }
-
 variable "jenkins_url" {
-  description = "Jenkins server URL"
-  default     = "http://16.59.94.213:8080"
+  default = "http://16.59.94.213:8080"
 }
-
 variable "jenkins_job" {
-  description = "Jenkins job name"
-  default     = "day"
+  default = "day"
 }
-
-variable "github_token" {
-  description = "GitHub Personal Access Token"
-  sensitive   = true
-}
-
-# --- Add these two ---
 variable "jenkins_user" {
-  description = "Jenkins username"
-  default     = "admin"  # change if your username differs
-}
-
-variable "jenkins_api_token" {
-  description = "Jenkins API token (from Jenkins user profile, not your password)"
-  sensitive   = true
+  default = "admin"
 }

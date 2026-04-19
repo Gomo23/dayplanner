@@ -26,12 +26,12 @@ resource "null_resource" "trigger_jenkins" {
 
   provisioner "local-exec" {
     command = <<-EOT
-      CRUMB=$(curl -s -u "${var.jenkins_user}:${var.jenkins_api_token}" \
+      CRUMB=$(curl -s -u "${var.jenkins_user}:${local.jenkins_api_token}" \
         "${var.jenkins_url}/crumbIssuer/api/json" \
         | python3 -c "import sys,json; d=json.load(sys.stdin); print(d['crumbRequestField'] + ':' + d['crumb'])")
 
       curl -X POST "${var.jenkins_url}/job/${var.jenkins_job}/build" \
-        -u "${var.jenkins_user}:${var.jenkins_api_token}" \
+        -u "${var.jenkins_user}:${local.jenkins_api_token}" \
         -H "$CRUMB"
     EOT
   }
