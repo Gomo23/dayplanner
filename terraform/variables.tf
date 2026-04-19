@@ -1,4 +1,4 @@
-k# DELETE these two variables — no longer needed
+# DELETE these two variables — no longer needed
 # variable "jenkins_api_token" { ... }
 # variable "github_token" { ... }
 
