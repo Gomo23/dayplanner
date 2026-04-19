@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: 334894867020.dkr.ecr.us-east-2.amazonaws.com/dayplanner-frontend:4
+          image: 334894867020.dkr.ecr.us-east-2.amazonaws.com/dayplanner-frontend:5
           ports:
             - containerPort: 80
 ---
