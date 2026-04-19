@@ -20,7 +20,8 @@ resource "null_resource" "trigger_jenkins" {
   depends_on = [
     helm_release.nginx_ingress,
     helm_release.argocd_app,
-    null_resource.wait_for_argocd,        # ← ADD THIS
+    null_resource.wait_for_argocd,
+    helm_release.prometheus,        # ← ADD THIS
     aws_db_instance.postgres,
     aws_ecr_repository.backend,
     aws_ecr_repository.frontend
