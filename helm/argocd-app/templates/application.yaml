@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/Gomo23/dayplanner.git
     targetRevision: main
-    path: helm/dayplanner        # ← change from k8s to this
+    path: helm/dayplanner
     helm:
       valueFiles:
         - values.yaml
