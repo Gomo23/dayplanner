@@ -1,0 +1,4 @@
+apiVersion: v2
+name: dayplanner-monitoring
+description: Monitoring resources for DayPlanner
+version: 1.0.0

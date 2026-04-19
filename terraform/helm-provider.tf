@@ -79,3 +79,24 @@ resource "null_resource" "wait_for_argocd" {
     command = "echo 'Waiting for ArgoCD to sync...' && sleep 60 && aws eks update-kubeconfig --region ${var.aws_region} --name ${var.cluster_name} && kubectl wait --for=condition=available deployment/argocd-server -n argocd --timeout=300s && echo 'ArgoCD ready'"
   }
 }
+resource "helm_release" "prometheus" {
+  name             = "prometheus"
+  repository       = "https://prometheus-community.github.io/helm-charts"
+  chart            = "kube-prometheus-stack"
+  namespace        = "monitoring"
+  create_namespace = true
+  wait             = true
+  timeout          = 600
+
+  set {
+    name  = "grafana.adminPassword"
+    value = "admin123"
+  }
+
+  set {
+    name  = "prometheus.prometheusSpec.serviceMonitorSelectorNilUsesHelmValues"
+    value = "false"
+  }
+
+  depends_on = [aws_eks_node_group.main]
+}
