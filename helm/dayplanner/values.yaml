@@ -6,7 +6,7 @@ aws:
 backend:
   image:
     repository: "334894867020.dkr.ecr.us-east-2.amazonaws.com/dayplanner-backend"
-    tag: "6"
+    tag: "7"
   replicas: 1
   port: 4000
   env:
@@ -17,7 +17,7 @@ backend:
 frontend:
   image:
     repository: "334894867020.dkr.ecr.us-east-2.amazonaws.com/dayplanner-frontend"
-    tag: "6"
+    tag: "7"
   replicas: 1
   port: 80
 
