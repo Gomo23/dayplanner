@@ -4,20 +4,20 @@ metadata:
   name: dayplanner-k8s-ingress
   namespace: dayplanner-k8s
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/use-regex: "true"
 spec:
   ingressClassName: nginx
   rules:
     - http:
         paths:
-          - path: /api
+          - path: /k8s-api
             pathType: Prefix
             backend:
               service:
                 name: backend
                 port:
                   number: 4000
-          - path: /
+          - path: /k8s
             pathType: Prefix
             backend:
               service:
