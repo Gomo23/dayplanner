@@ -100,3 +100,40 @@ resource "helm_release" "prometheus" {
 
   depends_on = [aws_eks_node_group.main]
 }
+
+# Expose Grafana and Prometheus via LoadBalancer
+resource "kubernetes_service_v1" "grafana_lb" {
+  metadata {
+    name      = "grafana-external"
+    namespace = "monitoring"
+  }
+  spec {
+    selector = {
+      "app.kubernetes.io/name" = "grafana"
+    }
+    port {
+      port        = 80
+      target_port = 3000
+    }
+    type = "LoadBalancer"
+  }
+  depends_on = [helm_release.prometheus]
+}
+
+resource "kubernetes_service_v1" "prometheus_lb" {
+  metadata {
+    name      = "prometheus-external"
+    namespace = "monitoring"
+  }
+  spec {
+    selector = {
+      "app.kubernetes.io/name" = "prometheus"
+    }
+    port {
+      port        = 9090
+      target_port = 9090
+    }
+    type = "LoadBalancer"
+  }
+  depends_on = [helm_release.prometheus]
+}
